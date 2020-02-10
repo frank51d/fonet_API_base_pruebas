@@ -1,6 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
+export default{
+
     database: {
         host: 'db4free.net',
         user: 'fonet_it',
@@ -8,4 +7,5 @@ exports.default = {
         database: 'fonet_app',
         port: 3306
     }
-};
+
+}
