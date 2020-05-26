@@ -11,7 +11,8 @@ class reportsRoutes {
 
     config(){
 
-        this.router.post('/', reportController.list);
+        this.router.post('/full', reportController.list);
+        this.router.post('/fecha', reportController.intervalo);
 
     }
 

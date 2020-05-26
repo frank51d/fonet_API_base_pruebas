@@ -4,7 +4,7 @@ exports.default = {
     database: {
         host: 'localhost',
         user: 'fonet',
-        password: 'lK7fqM4xU@',
+        password: '1Qazxsw2.',
         database: 'fonet_app',
         port: 3306
     }

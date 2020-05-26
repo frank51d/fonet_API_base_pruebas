@@ -8,7 +8,8 @@ class reportsRoutes {
         this.config();
     }
     config() {
-        this.router.post('/', reportController_1.reportController.list);
+        this.router.post('/full', reportController_1.reportController.list);
+        this.router.post('/fecha', reportController_1.reportController.intervalo);
     }
 }
 const reportRoutes = new reportsRoutes();
