@@ -7,7 +7,7 @@ class ordenesController {
     public async list(req: Request, res: Response): Promise<void> {
 
         await pool.then(function (p) {
-            p.query('SELECT ordenes_servicio.idorden, estatus_orden.descripcion AS estatus, tipo_orden.descripcion AS tipo_orden, usuario.nombre, ordenes_servicio.nombres_cliente, ordenes_servicio.fecha_asig FROM ordenes_servicio INNER JOIN estatus_orden ON ordenes_servicio.idestatus_orden = estatus_orden.idestatus_orden INNER JOIN tipo_orden ON ordenes_servicio.idtipo_orden = tipo_orden.idtipo_orden INNER JOIN usuario ON ordenes_servicio.id = usuario.id ORDER BY ordenes_servicio.idorden DESC', function (error: any, result: any[]) {
+            p.query('SELECT ordenes_servicio.idorden, estatus_orden.descripcion AS estatus, tipo_orden.descripcion AS tipo_orden, usuario.nombre, ordenes_servicio.nombres_cliente, ordenes_servicio.fecha_asig, ordenes_servicio.direccion_cliente FROM ordenes_servicio INNER JOIN estatus_orden ON ordenes_servicio.idestatus_orden = estatus_orden.idestatus_orden INNER JOIN tipo_orden ON ordenes_servicio.idtipo_orden = tipo_orden.idtipo_orden INNER JOIN usuario ON ordenes_servicio.id = usuario.id ORDER BY ordenes_servicio.idorden DESC', function (error: any, result: any[]) {
                 if (error) throw (error);
                 return res.json(result);
             });
@@ -19,7 +19,7 @@ class ordenesController {
         const { id } = req.params;
 
         await pool.then(function (p) {
-            p.query('SELECT ordenes_servicio.coordenada, ordenes_servicio.calificacion, ordenes_servicio.diagnostico_final, ordenes_servicio.diagnostico_inicial, ordenes_servicio.direccion_cliente, ordenes_servicio.fecha_asig, ordenes_servicio.fecha_ejecucion, ordenes_servicio.fecha_reporte, ordenes_servicio.hora_fin, ordenes_servicio.hora_inicio, ordenes_servicio.idestatus_orden, ordenes_servicio.idorden, ordenes_servicio.idtipo_orden, ordenes_servicio.id, ordenes_servicio.movil_cliente, ordenes_servicio.nombres_cliente, ordenes_servicio.ppp_pass, ordenes_servicio.ppp_user, ordenes_servicio.telefono_cliente, estatus_orden.descripcion AS estatus, tipo_orden.descripcion AS tipo_orden FROM fonet_app.ordenes_servicio INNER JOIN estatus_orden ON ordenes_servicio.idestatus_orden =  estatus_orden.idestatus_orden INNER JOIN tipo_orden ON ordenes_servicio.idtipo_orden = tipo_orden.idtipo_orden WHERE ordenes_servicio.idorden = ?', [id])
+            p.query('SELECT ordenes_servicio.comentarios, ordenes_servicio.motivo_susp, ordenes_servicio.coordenada, ordenes_servicio.diagnostico_final, ordenes_servicio.diagnostico_inicial, ordenes_servicio.direccion_cliente, ordenes_servicio.fecha_asig, ordenes_servicio.fecha_ejecucion, ordenes_servicio.fecha_reporte, ordenes_servicio.hora_fin, ordenes_servicio.hora_inicio, ordenes_servicio.idestatus_orden, ordenes_servicio.idorden, ordenes_servicio.idtipo_orden, ordenes_servicio.id, ordenes_servicio.movil_cliente, ordenes_servicio.nombres_cliente, ordenes_servicio.ppp_pass, ordenes_servicio.ppp_user, ordenes_servicio.telefono_cliente, estatus_orden.descripcion AS estatus, tipo_orden.descripcion AS tipo_orden FROM fonet_app.ordenes_servicio INNER JOIN estatus_orden ON ordenes_servicio.idestatus_orden =  estatus_orden.idestatus_orden INNER JOIN tipo_orden ON ordenes_servicio.idtipo_orden = tipo_orden.idtipo_orden WHERE ordenes_servicio.idorden = ?', [id])
                 .then(function (result) {
                     if (result.length > 0) {
                         return res.json(result[0]);

@@ -19,7 +19,7 @@ class materialesUtiController{
         const {id} = req.params;
 
         await pool.then(function(p){
-            p.query('SELECT materiales_utilizados.idmaterial, materiales.descripcion, materiales_utilizados.cantidad  FROM materiales INNER JOIN materiales_utilizados ON materiales.idmaterial = materiales_utilizados.idmaterial INNER JOIN ordenes_servicio ON ordenes_servicio.idorden = materiales_utilizados.idorden WHERE ordenes_servicio.idorden = ?', [id])
+            p.query('SELECT materiales_utilizados.idorden, materiales_utilizados.idmaterial, materiales.descripcion, materiales_utilizados.cantidad  FROM materiales INNER JOIN materiales_utilizados ON materiales.idmaterial = materiales_utilizados.idmaterial INNER JOIN ordenes_servicio ON ordenes_servicio.idorden = materiales_utilizados.idorden WHERE ordenes_servicio.idorden = ?', [id])
                 .then(function(result){
                     
                         return res.json(result);
